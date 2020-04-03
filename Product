@@ -1,0 +1,81 @@
+package com.example.admin;
+
+public class Product {
+
+    private String name;
+    private String product_id;
+    private String owner;
+    private String factory_location;
+    private String selling_place;
+    private String price;
+    private String status;
+
+    public Product() {
+    }
+
+    public Product(String name, String product_id, String owner, String factory_location, String selling_place, String price, String status) {
+        this.name = name;
+        this.product_id = product_id;
+        this.owner = owner;
+        this.factory_location = factory_location;
+        this.selling_place = selling_place;
+        this.price = price;
+        this.status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getFactory_location() {
+        return factory_location;
+    }
+
+    public void setFactory_location(String factory_location) {
+        this.factory_location = factory_location;
+    }
+
+    public String getSelling_place() {
+        return selling_place;
+    }
+
+    public void setSelling_place(String selling_place) {
+        this.selling_place = selling_place;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
