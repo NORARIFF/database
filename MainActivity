@@ -1,0 +1,72 @@
+package com.example.admin;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText name,product_id,owner,factory_location,selling_place,price,status;
+    Button insert;
+    FirebaseDatabase database;
+    DatabaseReference ref;
+    Product product;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        name = (EditText) findViewById(R.id.name);
+        product_id = (EditText) findViewById(R.id.product_id);
+        owner = (EditText) findViewById(R.id.owner);
+        factory_location = (EditText) findViewById(R.id.factory_location);
+        selling_place = (EditText) findViewById(R.id.selling_place);
+        price = (EditText) findViewById(R.id.price);
+        status = (EditText) findViewById(R.id.status);
+        insert = (Button) findViewById(R.id.btnInsert);
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("Product");
+        product = new Product();
+    }
+
+    private void getValues(){
+        product.setName(name.getText().toString());
+        product.setProduct_id(product_id.getText().toString());
+        product.setOwner(owner.getText().toString());
+        product.setFactory_location(factory_location.getText().toString());
+        product.setSelling_place(selling_place.getText().toString());
+        product.setPrice(price.getText().toString());
+        product.setStatus(status.getText().toString());
+    }
+
+    public void btnInsert (View view) {
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                getValues();
+                ref.child("Product02").setValue(product);
+                Toast.makeText(MainActivity.this,"Data Inserted......",Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+}
